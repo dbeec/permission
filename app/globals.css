@@ -1,0 +1,40 @@
+/* Configuración de tailwind
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Configuración para todo el layout de la pagina
+ */
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  appearance: 0;
+  border: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+html {
+  /* font-family: "Urbanist", sans-serif; */
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+}
+
+body {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+ul {
+  list-style: none;
+}

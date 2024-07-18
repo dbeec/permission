@@ -1,0 +1,25 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  width: 84%;
+  height: 8%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 12px 0px;
+}
+
+.content-burger__menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #222;
+}
+
+.content-burger__menu:hover {
+  background-color: #2222220a;
+}

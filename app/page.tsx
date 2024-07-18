@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import React from "react";
+import Link from "next/link";
 
 const schema = yup
   .object({
@@ -25,7 +26,7 @@ const schema = yup
   })
   .required();
 
-export default function Home() {
+export default function SignIn() {
   const {
     register,
     reset,
@@ -42,13 +43,13 @@ export default function Home() {
       <div className={styles.main__content}>
         <div className={styles.login}>
           <div className={styles.logo}>
-            {/* <Image
+            <Image
               src={LogoCoophumana}
               alt="LogoCoophumana"
               width={500}
               height={200}
               priority={true}
-            /> */}
+            />
 
             <h1>Bienvenid@</h1>
             <p>
@@ -110,9 +111,11 @@ export default function Home() {
               }}
             />
 
-            <button className={styles.button} type="submit">
-              Iniciar sesión
-            </button>
+            <Link href="/dashboard">
+              <button className={styles.button} type="submit">
+                Iniciar sesión
+              </button>
+            </Link>
           </form>
         </div>
       </div>

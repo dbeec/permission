@@ -27,7 +27,7 @@ export default function Sidebar() {
   useEffect(() => {
     const fetchRoutes = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/v1/routes");
+        const response = await axios.get("http://localhost:4000/v1/routes");
         setRoutes(response.data);
       } catch (error) {
         console.log("Error fetching routes...");

@@ -1,5 +1,5 @@
 .sidebar {
-  background-color: #259780;
+  background-color: #1a7563;
   /* background-color: #ffc0a7; */
   width: 18%;
   height: 100%;
@@ -10,7 +10,8 @@
 
 .span {
   display: flex;
+  gap: 4px;
   align-items: center;
   text-align: center;
-  margin-left: 5px;
+  /* margin-left: 2px; */
 }

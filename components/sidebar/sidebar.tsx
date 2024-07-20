@@ -1,10 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
-import "./sidebar.css";
 import axios from "axios";
 import Link from "next/link";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import RecentActorsIcon from '@mui/icons-material/RecentActors';
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import "./sidebar.css";
 
 interface Route {
   id: number;
@@ -20,24 +22,24 @@ interface GroupedRoutes {
   };
 }
 
-export default function Sidebar() {
-  const [routes, setRoutes] = useState<Route[]>([]);
-  console.log("Routes data:", routes);
+const moduleIcons: { [key: string]: React.ElementType } = {
+  ADMINISTRACIÓN: AdminPanelSettingsIcon,
+  TERCEROS: RecentActorsIcon,
+  // Añade más módulos y sus iconos correspondientes aquí
+};
 
-  useEffect(() => {
-    const fetchRoutes = async () => {
-      try {
-        const response = await axios.get("http://localhost:4000/v1/routes");
-        setRoutes(response.data);
-      } catch (error) {
-        console.log("Error fetching routes...");
-      }
-    };
-    fetchRoutes();
-  }, []);
+const fetchRoutes = async (): Promise<Route[]> => {
+  try {
+    const response = await axios.get("http://localhost:4000/v1/routes");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching routes:", error);
+    return [];
+  }
+};
 
-  // Agrupa las rutas por módulo y luego por submódulo
-  const groupedRoutes = routes.reduce((acc: GroupedRoutes, route) => {
+const groupRoutes = (routes: Route[]): GroupedRoutes =>
+  routes.reduce((acc: GroupedRoutes, route) => {
     if (!acc[route.module]) {
       acc[route.module] = {};
     }
@@ -48,11 +50,31 @@ export default function Sidebar() {
     return acc;
   }, {});
 
+export default function Sidebar() {
+  const [routes, setRoutes] = useState<Route[]>([]);
+
+  useEffect(() => {
+    const storedRoutes = sessionStorage.getItem("routes");
+    if (storedRoutes) {
+      // Si hay rutas almacenadas, cargarlas
+      setRoutes(JSON.parse(storedRoutes));
+    } else {
+      // Si no hay rutas almacenadas, hacer la solicitud
+      fetchRoutes().then((data) => {
+        setRoutes(data);
+        sessionStorage.setItem("routes", JSON.stringify(data));
+      });
+    }
+  }, []);
+
+  const groupedRoutes = groupRoutes(routes);
+
   return (
-    <>
-      <div className="sidebar">
-        {/* Este es el mapeo para el modulo del sidebar */}
-        {Object.keys(groupedRoutes).map((module) => (
+    <div className="sidebar">
+      {Object.keys(groupedRoutes).map((module) => {
+        const IconComponent = moduleIcons[module] || null;
+
+        return (
           <Accordion
             key={module}
             square
@@ -62,20 +84,27 @@ export default function Sidebar() {
               color: "#fff",
               boxShadow: "none",
               padding: "0",
+              margin: "0",
             }}
           >
             <AccordionSummary
               sx={{
-                fontSize: ".9rem",
+                fontSize: ".8rem",
                 fontWeight: "400",
                 padding: "0 4px",
+                minHeight: "unset",
+                "& .MuiAccordionSummary-content": {
+                  margin: "6px 0",
+                },
               }}
               expandIcon={<ExpandMoreIcon sx={{ color: "#fff" }} />}
             >
-              <span className="span">{module}</span>
+              <span className="span">
+                {IconComponent && <IconComponent />}
+                {module}
+              </span>
             </AccordionSummary>
 
-            {/* Este es el mapeo para el sub-modulo del sidebar */}
             {Object.keys(groupedRoutes[module]).map((submodule) => (
               <Accordion
                 key={submodule}
@@ -87,28 +116,31 @@ export default function Sidebar() {
               >
                 <AccordionSummary
                   sx={{
-                    fontSize: ".85rem",
+                    fontSize: ".82rem",
                     fontWeight: "400",
                     padding: "0 4px",
-                    marginLeft: "1rem",
-                    color: "#222",
+                    marginLeft: ".5rem",
+                    color: "#1a7563",
+                    minHeight: "unset",
+                    "& .MuiAccordionSummary-content": {
+                      margin: "6px 0",
+                    },
                   }}
-                  expandIcon={<ExpandMoreIcon sx={{ color: "#222" }} />}
+                  expandIcon={<ExpandMoreIcon sx={{ color: "#555" }} />}
                 >
                   <span className="span">{submodule}</span>
                 </AccordionSummary>
 
-                {/* Aqui se ven las opciones agrupadas por los modulos y submodulos */}
                 {groupedRoutes[module][submodule].map((route) => (
                   <Link href={route.path} key={route.id}>
                     <AccordionDetails
                       sx={{
                         bgcolor: "#fff",
-                        color: "#222",
-                        fontSize: ".85rem",
+                        color: "#444",
+                        fontSize: ".80rem",
                         fontWeight: "400",
-                        borderRadius: "3px",
-                        padding: ".4rem 1rem",
+                        borderRadius: '4px',
+                        padding: ".4rem .8rem",
                         "&:hover": {
                           bgcolor: "#ffc0a7",
                         },
@@ -121,8 +153,8 @@ export default function Sidebar() {
               </Accordion>
             ))}
           </Accordion>
-        ))}
-      </div>
-    </>
+        );
+      })}
+    </div>
   );
 }

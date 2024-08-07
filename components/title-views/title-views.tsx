@@ -3,7 +3,7 @@ import './title-views.css'
 import React from "react";
 
 interface PropTitle {
-  title: string;
+  title?: string;
 }
 
 const Title: React.FC<PropTitle> = ({ title }) => {

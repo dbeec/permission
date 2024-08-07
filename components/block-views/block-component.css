@@ -1,0 +1,21 @@
+.block__container {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.block__title {
+  width: 100%;
+  height: auto;
+  background-color: #1a7563;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  margin-bottom: 1.4rem;
+}
+
+.block__title p {
+  color: #fff;
+  font-size: 0.8rem;
+}

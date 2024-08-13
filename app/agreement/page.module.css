@@ -16,21 +16,32 @@
 }
 
 .dashboard__content {
+  position: relative;
   padding: 20px;
   box-sizing: border-box;
   overflow-y: auto;
+}
+
+.content__button__export {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  right: 20px;
+  top: 20px;
 }
 
 .block__content {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  margin-top: 20px;
 }
 
 .button {
   display: flex;
   justify-content: flex-end;
-  margin-top: 1.5rem;
+  margin-top: 20px;
 }
 
 .button button {

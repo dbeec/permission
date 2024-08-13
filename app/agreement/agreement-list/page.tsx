@@ -11,7 +11,7 @@ export default function AgreementList() {
         <div className={styles.dashboard__main}>
           <Header />
           <div className={styles.dashboard__content}>
-            <Title title="lista de convenio" />
+            <Title title="LISTA DE CONVENIOS" />
 
             
           </div>

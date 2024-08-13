@@ -15,7 +15,7 @@ export default function Dashboard() {
         <div className={styles.dashboard__main}>
           <Header />
           <div className={styles.dashboard__content}>
-            <Title title="dashboard" />
+            <Title title="DASHBOARD" />
 
             <div className={styles.content__cards}>
               <div className={styles.cards}>

@@ -3,7 +3,7 @@ import "./block-component.css";
 
 interface PropBlockTitle {
   blockTitle?: string;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const BlockView: FC<PropBlockTitle> = ({ blockTitle, children }) => {

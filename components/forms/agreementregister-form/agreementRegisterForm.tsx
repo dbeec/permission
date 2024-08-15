@@ -6,6 +6,7 @@ import {
   MenuItem,
   InputLabel,
   Select,
+  SelectChangeEvent,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -14,6 +15,7 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers";
+import React from "react";
 
 // Define tu esquema de validación con Yup
 const schema = yup
@@ -133,7 +135,7 @@ export function AgreementBasicInformation() {
                 slotProps={{
                   textField: {
                     variant: "outlined",
-                    label: "Hola",
+                    label: "Fecha de ingreso",
                     size: "small",
                     InputLabelProps: { shrink: true },
                   },
@@ -146,20 +148,7 @@ export function AgreementBasicInformation() {
                 slotProps={{
                   textField: {
                     variant: "outlined",
-                    label: "Hola",
-                    size: "small",
-                    InputLabelProps: { shrink: true },
-                  },
-                }}
-              />
-            </Grid>
-
-            <Grid item xs={3}>
-              <DatePicker
-                slotProps={{
-                  textField: {
-                    variant: "outlined",
-                    label: "Hola",
+                    label: "Fecha de retiro",
                     size: "small",
                     InputLabelProps: { shrink: true },
                   },
@@ -169,21 +158,23 @@ export function AgreementBasicInformation() {
 
             <Grid item xs={3}>
               <FormControl variant="outlined" fullWidth>
-                <InputLabel id="sectorEconomico-label" shrink>
+                <InputLabel id="enviarAInfinto-label" shrink>
                   Sector económico
                 </InputLabel>
                 <Select
-                  labelId="sectorEconomico-label"
+                  labelId="enviarAInfinto-label"
                   label="Sector económico"
                   size="small"
-                  {...register("sectorEconomico")}
-                  error={!!errors.sectorEconomico}
+                  defaultValue="Sector económico"
+                  {...register("enviarAInfinto")}
+                  error={!!errors.enviarAInfinto}
                 >
-                  <MenuItem value="sector1">SI</MenuItem>
-                  <MenuItem value="sector2">NO</MenuItem>
+                  <MenuItem value="opcion1">Opción 1</MenuItem>
+                  <MenuItem value="opcion2">Opción 2</MenuItem>
+                  <MenuItem value="opcion3">Opción 3</MenuItem>
                 </Select>
-                {errors.sectorEconomico && (
-                  <p>{errors.sectorEconomico.message}</p>
+                {errors.enviarAInfinto && (
+                  <p>{errors.enviarAInfinto.message}</p>
                 )}
               </FormControl>
             </Grid>
@@ -197,12 +188,10 @@ export function AgreementBasicInformation() {
                   labelId="enviarAInfinto-label"
                   label="Enviar a infinito"
                   size="small"
+                  defaultValue="Enviar a infinito"
                   {...register("enviarAInfinto")}
                   error={!!errors.enviarAInfinto}
                 >
-                  <MenuItem value="">
-                    <em>Seleccione</em>
-                  </MenuItem>
                   <MenuItem value="opcion1">Opción 1</MenuItem>
                   <MenuItem value="opcion2">Opción 2</MenuItem>
                   <MenuItem value="opcion3">Opción 3</MenuItem>
@@ -237,143 +226,177 @@ export function AgreementResidenceAndContact() {
           <Grid container spacing={2}>
             <Grid item xs={3}>
               <FormControl variant="outlined" fullWidth>
-                <InputLabel shrink>
-                  Régimen
+                <InputLabel id="enviarAInfinto-label" shrink>
+                  Departamento
                 </InputLabel>
                 <Select
-                  label="Régimen"
+                  labelId="enviarAInfinto-label"
+                  label="Departamento"
                   size="small"
+                  defaultValue="Departamento"
+                  {...register("enviarAInfinto")}
+                  error={!!errors.enviarAInfinto}
                 >
-                  <MenuItem value="">
-                    <em>Seleccione</em>
-                  </MenuItem>
                   <MenuItem value="opcion1">Opción 1</MenuItem>
                   <MenuItem value="opcion2">Opción 2</MenuItem>
                   <MenuItem value="opcion3">Opción 3</MenuItem>
                 </Select>
-              </FormControl>
-            </Grid>
-
-            <Grid item xs={1}>
-              <FormControl variant="outlined" fullWidth>
-                <TextField
-                  label="DV"
-                  size="small"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-              </FormControl>
-            </Grid>
-
-            <Grid item xs={3}>
-              <FormControl variant="outlined" fullWidth>
-                <TextField
-                  label="Razón social"
-                  size="small"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-              </FormControl>
-            </Grid>
-
-            <Grid item xs={3}>
-              <FormControl variant="outlined" fullWidth>
-                <TextField
-                  label="Nombre de facturación"
-                  size="small"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-              </FormControl>
-            </Grid>
-
-            <Grid item xs={3}>
-              <FormControl variant="outlined" fullWidth>
-                <TextField
-                  label="Representante legal"
-                  size="small"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-              </FormControl>
-            </Grid>
-
-            <Grid item xs={3}>
-              <DatePicker
-                slotProps={{
-                  textField: {
-                    variant: "outlined",
-                    label: "Hola",
-                    size: "small",
-                    InputLabelProps: { shrink: true },
-                  },
-                }}
-              />
-            </Grid>
-
-            <Grid item xs={3}>
-              <DatePicker
-                slotProps={{
-                  textField: {
-                    variant: "outlined",
-                    label: "Hola",
-                    size: "small",
-                    InputLabelProps: { shrink: true },
-                  },
-                }}
-              />
-            </Grid>
-
-            <Grid item xs={3}>
-              <DatePicker
-                slotProps={{
-                  textField: {
-                    variant: "outlined",
-                    label: "Hola",
-                    size: "small",
-                    InputLabelProps: { shrink: true },
-                  },
-                }}
-              />
-            </Grid>
-
-            <Grid item xs={3}>
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel id="sectorEconomico-label" shrink>
-                  Sector económico
-                </InputLabel>
-                <Select
-                  labelId="sectorEconomico-label"
-                  label="Sector económico"
-                  size="small"
-                >
-                  <MenuItem value="sector1">SI</MenuItem>
-                  <MenuItem value="sector2">NO</MenuItem>
-                </Select>
+                {errors.enviarAInfinto && (
+                  <p>{errors.enviarAInfinto.message}</p>
+                )}
               </FormControl>
             </Grid>
 
             <Grid item xs={3}>
               <FormControl variant="outlined" fullWidth>
                 <InputLabel id="enviarAInfinto-label" shrink>
-                  Enviar a infinito
+                  Ciudad
                 </InputLabel>
                 <Select
                   labelId="enviarAInfinto-label"
-                  label="Enviar a infinito"
+                  label="Ciudad"
                   size="small"
+                  defaultValue="Ciudad"
+                  {...register("enviarAInfinto")}
+                  error={!!errors.enviarAInfinto}
                 >
-                  <MenuItem value="">
-                    <em>Seleccione</em>
-                  </MenuItem>
                   <MenuItem value="opcion1">Opción 1</MenuItem>
                   <MenuItem value="opcion2">Opción 2</MenuItem>
                   <MenuItem value="opcion3">Opción 3</MenuItem>
                 </Select>
+                {errors.enviarAInfinto && (
+                  <p>{errors.enviarAInfinto.message}</p>
+                )}
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={3}>
+              <FormControl variant="outlined" fullWidth>
+                <TextField
+                  label="Barrio"
+                  size="small"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={3}>
+              <FormControl variant="outlined" fullWidth>
+                <InputLabel id="enviarAInfinto-label" shrink>
+                  Tipo de dirección 1
+                </InputLabel>
+                <Select
+                  labelId="enviarAInfinto-label"
+                  label="Tipo de dirección 1"
+                  size="small"
+                  defaultValue="Tipo de dirección 1"
+                  {...register("enviarAInfinto")}
+                  error={!!errors.enviarAInfinto}
+                >
+                  <MenuItem value="opcion1">Opción 1</MenuItem>
+                  <MenuItem value="opcion2">Opción 2</MenuItem>
+                  <MenuItem value="opcion3">Opción 3</MenuItem>
+                </Select>
+                {errors.enviarAInfinto && (
+                  <p>{errors.enviarAInfinto.message}</p>
+                )}
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={3}>
+              <FormControl variant="outlined" fullWidth>
+                <TextField
+                  label="Numero 1"
+                  size="small"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={3}>
+              <FormControl variant="outlined" fullWidth>
+                <InputLabel id="enviarAInfinto-label" shrink>
+                  Tipo de dirección 2
+                </InputLabel>
+                <Select
+                  labelId="enviarAInfinto-label"
+                  label="Tipo de dirección 2"
+                  size="small"
+                  defaultValue="Tipo de dirección 2"
+                  {...register("enviarAInfinto")}
+                  error={!!errors.enviarAInfinto}
+                >
+                  <MenuItem value="opcion1">Opción 1</MenuItem>
+                  <MenuItem value="opcion2">Opción 2</MenuItem>
+                  <MenuItem value="opcion3">Opción 3</MenuItem>
+                </Select>
+                {errors.enviarAInfinto && (
+                  <p>{errors.enviarAInfinto.message}</p>
+                )}
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={3}>
+              <FormControl variant="outlined" fullWidth>
+                <TextField
+                  label="Numero 2"
+                  size="small"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={3}>
+              <FormControl variant="outlined" fullWidth>
+                <TextField
+                  label="Numero 3"
+                  size="small"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={3}>
+              <FormControl variant="outlined" fullWidth>
+                <TextField
+                  label="Detalle"
+                  size="small"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={3}>
+              <FormControl variant="outlined" fullWidth>
+                <TextField
+                  label="Teléfono"
+                  size="small"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={3}>
+              <FormControl variant="outlined" fullWidth>
+                <TextField
+                  label="Correo eléctronico"
+                  size="small"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
               </FormControl>
             </Grid>
           </Grid>

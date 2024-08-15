@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import LogoCoophumana from "../public/logo-web.png";
+import LogoCoophumana from "../public/logo_web.png";
 import styles from "./page.module.css";
 import { TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
